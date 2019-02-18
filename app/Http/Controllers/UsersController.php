@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class UsersController extends Controller
 {
+
 	use ValidatesRequests;
 
 	public function index()
