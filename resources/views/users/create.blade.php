@@ -10,6 +10,7 @@
         <div class="row">
             <div class="col-md-12">
                 {!! Form::open(['route' => ['users.store']]) !!}
+                {{ csrf_field() }}
                     <div class="form-group">
                         <p><b>First Name:</b><br>
                             <input type="text" class="form-control" name="firstName" value="{{ old('firstName') }}">

@@ -27,8 +27,17 @@ class UsersController extends Controller
 	public function store(createUserRequest $request)
 	{
 		User::create($request->all());
-
-		return redirect()->route('users.index');
+		return response()
+			->json([
+				$request->all()
+//				'firstName' => 'firstName',
+//				'secondName' => 'secondName',
+//				'age' => 'age'
+			])
+//			->withCallback($request->input('callback'))
+//			->withCallback(redirect()->route('users.index'))
+		;
+		//return redirect()->route('users.index');
 	}
 
 	public function edit($id)
