@@ -15,8 +15,12 @@ class UsersController extends Controller
 	public function index()
 	{
 		$users = User::all();
-
-		return view('users.index', ['users' => $users]);
+		return response()
+			->json([
+				$users->all()
+			])
+//		return view('users.index', ['users' => $users])
+		;
 	}
 
 	public function create()
@@ -60,7 +64,12 @@ class UsersController extends Controller
 		$myUser->fill($request->all());
 		$myUser->save();
 
-		return redirect()->route('users.index');
+		return response()
+			->json([
+				$request->all()
+			])
+		;
+//		return redirect()->route('users.index');
 	}
 
 	public function show($id)

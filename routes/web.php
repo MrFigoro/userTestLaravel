@@ -21,13 +21,13 @@ Route::get('/users/create', 'UsersController@create')->name('users.create');
 
 Route::post('/users/store', 'UsersController@store')->name('users.store');
 
-Route::get('/users/{id}/edit', 'UsersController@edit')->name('users.edit');
+Route::get('/users/edit/{id}', 'UsersController@edit')->name('users.edit');
 
-Route::put('/users/{id}/update', 'UsersController@update')->name('users.update');
+Route::put('/users/update/{id}', 'UsersController@update')->name('users.update');
 
-Route::get('/users/{id}/show', 'UsersController@show')->name('users.show');
+Route::get('/users/show/{id}', 'UsersController@show')->name('users.show');
 
-Route::delete('/users/{id}/destroy', 'UsersController@destroy')->name('users.destroy');
+Route::delete('/users/destroy/{id}', 'UsersController@destroy')->name('users.destroy');
 
 //Route::get('/hello', function () {
 //	return view('hello', [
