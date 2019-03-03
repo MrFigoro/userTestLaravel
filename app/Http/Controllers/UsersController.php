@@ -92,7 +92,7 @@ class UsersController extends Controller
 		}
 		else{
 			return response()->json(['errors' => ['Not found user with given ID.']], 404);
-		};
+		}
 //		return redirect()->route('users.index');
 	}
 }
