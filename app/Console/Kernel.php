@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
 	    'App\Console\Commands\DelAllUsers',
-	    'App\Console\Commands\OutputText'//
+	    'App\Console\Commands\OutputText',
+	    'App\Console\Commands\UsersGet'//
     ];
 
     /**
