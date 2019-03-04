@@ -3,23 +3,22 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use GuzzleHttp\Client;
 
-class UsersGet extends Command
+class OutputTextCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'users:get';
+    protected $signature = 'users:output';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Make Get request for all users';
+    protected $description = 'Эту команду создал я - просто вывод текста';
 
     /**
      * Create a new command instance.
@@ -38,10 +37,6 @@ class UsersGet extends Command
      */
     public function handle()
     {
-        $client = new Client();
-        $response = $client->request('GET', 'http://usertestlaravel/users');
-        echo "Status code: ".$response->getStatusCode()."\n";
-        echo "Response body: ".$response->getBody()."\n";
-        echo 'Command "users:get" successful';
+        dd("Вывод текста команды Output");//
     }
 }
