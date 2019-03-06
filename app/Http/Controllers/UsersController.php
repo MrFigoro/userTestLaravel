@@ -16,11 +16,15 @@ class UsersController extends Controller
 	public function index()
 	{
 		$users = User::all();
+//		$col = collect($users)->chunk(2);
 		return response()
-			->json([
-				$users->all()
-			])
-//		return view('users.index', ['users' => $users])
+//		return response($col)
+//			->collect($users)
+			->json(
+				$users
+//				$users->all()
+			)
+//			return view('users.index', ['users' => $users])
 		;
 	}
 
@@ -33,12 +37,13 @@ class UsersController extends Controller
 	{
 		$myUser = User::create($request->all());
 		return response()
-			->json([
+			->json(
+//				collect($myUser)
 				$myUser
 //				'firstName' => 'firstName',
 //				'secondName' => 'secondName',
 //				'age' => 'age'
-			])
+			)
 		;
 		//return redirect()->route('users.index');
 	}
@@ -66,9 +71,9 @@ class UsersController extends Controller
 			$myUser->fill($request->all());
 			$myUser->save();
 			return response()
-				->json([
+				->json(
 					$myUser
-				]);
+				);
 		}
 		else {
 			return response()->json(['errors' => ['Not found user with given ID.']], 404);
@@ -79,8 +84,11 @@ class UsersController extends Controller
 	public function show($id)
 	{
 		$myUser = User::findOrFail($id);
-
-		return view('users.show', ['user' => $myUser]);
+		return response()
+			->json(
+				$myUser
+			);
+//		return view('users.show', ['user' => $myUser]);
 	}
 
 	public function destroy($id)

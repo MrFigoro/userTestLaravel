@@ -40,26 +40,20 @@ class UserDelCommand extends Command
      */
     public function handle()
     {
-//	    $userId = $this->argument('id');
 	    $userId = $this->ask("Which user ID will be deleted?");
-	    //error
 	    $myUser = User::find($userId);
 	    if ($myUser instanceof User) {
 		    $client = new Client();
 		    if ($this->confirm("Are you sure to delete user with ID: $userId?")) {
-			    $response = $client->request('DELETE', "http://usertestlaravel/users/destroy/$userId");
-			    $this->info($response->getStatusCode());
-			    $this->comment($response->getBody());
-			    //$this->info($response->getBody());
-		    }
-		    else {
-		    	$this->comment("You refused surgery.");
+			    $resp = $client->delete("http://usertestlaravel/users/destroy/$userId");
+			    $this->info($resp->getStatusCode());
+			    $this->comment($resp->getBody());
+		    } else {
+			    $this->comment("You refused surgery.");
 		    }
 	    }
 	    else {
-		   $this->error('Warning! Not found user with given ID.');
+		   $this->error('Something went wrong!');
 	    }
-
-
     }
 }

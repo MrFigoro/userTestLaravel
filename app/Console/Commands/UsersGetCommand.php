@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use GuzzleHttp\Client;
+use App\Console\Commands\UserCommand;
 
-class UsersGetCommand extends Command
+class UsersGetCommand extends UserCommand
 {
     /**
      * The name and signature of the console command.
@@ -22,26 +21,17 @@ class UsersGetCommand extends Command
     protected $description = 'Make Get request for all users';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-	    $client = new Client();
-        $response = $client->request('GET', 'http://usertestlaravel/users');
-        echo "Status code: ".$response->getStatusCode()."\n";
-        echo "Response body: ".$response->getBody()."\n";
-        echo 'Command "users:get" successful';
+    	$resp = $this->client->request('GET', 'http://usertestlaravel/users');
+	    $this->info($resp->getStatusCode());
+	    $this->info($resp->getBody());
+//	    $c = collect($resp->getBody());
+//
+//	    dd($c->count());
     }
 }

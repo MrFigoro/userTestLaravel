@@ -16,7 +16,9 @@ class Kernel extends ConsoleKernel
 	    //'App\Console\Commands\DelAllUsers',
 	    'App\Console\Commands\OutputTextCommand',
 	    'App\Console\Commands\UsersGetCommand',
-	    'App\Console\Commands\UserDelCommand'
+	    'App\Console\Commands\UserDelCommand',
+	    'App\Console\Commands\UserPostCommand',
+	    'App\Console\Commands\UserPutCommand'
     ];
 
     /**
