@@ -18,7 +18,8 @@ class Kernel extends ConsoleKernel
 	    'App\Console\Commands\UsersGetCommand',
 	    'App\Console\Commands\UserDelCommand',
 	    'App\Console\Commands\UserPostCommand',
-	    'App\Console\Commands\UserPutCommand'
+	    'App\Console\Commands\UserPutCommand',
+	    'App\Console\Commands\MyFirstParserCommand'
     ];
 
     /**
