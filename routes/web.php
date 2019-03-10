@@ -29,8 +29,11 @@ Route::get('/users/show/{id}', 'UsersController@show')->name('users.show');
 
 Route::delete('/users/destroy/{id}', 'UsersController@destroy')->name('users.destroy');
 
-// Start parser. Secret token need for start parser via cron.
-Route::get('/start-parser/{token}', 'ParserController@start')->name('parser.start');
+Route::get('/events', 'EventsController@index')->name('events.index');
+
+Route::get('/events/create', 'EventsController@create')->name('events.create');
+
+Route::post('/events/store', 'EventsController@store')->name('events.store');
 
 //Route::get('/hello', function () {
 //	return view('hello', [

@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Console\Commands\UserCommand;
-
 class UsersGetCommand extends UserCommand
 {
     /**

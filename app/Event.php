@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 
-class User extends Model
+class Event extends Model
 {
-    protected $fillable = ['firstName', 'secondName', 'age'];
+	protected $fillable = ['img', 'title', 'date', 'cost'];
 }

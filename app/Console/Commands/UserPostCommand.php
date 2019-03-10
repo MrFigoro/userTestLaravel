@@ -2,10 +2,7 @@
 
 namespace App\Console\Commands;
 
-use GuzzleHttp\Client;
-use Illuminate\Console\Command;
-
-class UserPostCommand extends Command
+class UserPostCommand extends UserCommand
 {
     /**
      * The name and signature of the console command.
@@ -38,8 +35,7 @@ class UserPostCommand extends Command
      */
     public function handle()
     {
-	    $client = new Client();
-	    $response = $client->request('POST', 'http://usertestlaravel/users/store', [
+	    $response = $this->client->request('POST', 'http://usertestlaravel/users/store', [
 		    'form_params' => [
 			    "firstName" => "TestStoreMyCommand",
 			    "secondName" => "TestStoreMyCommand",

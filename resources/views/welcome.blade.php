@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <a href="/users">Users</a>
+                    <a href="/events">Events</a>
                     {{--<a href="https://laracasts.com">EditUsers</a>--}}
                     {{--<a href="https://laravel-news.com">News</a>--}}
                     <a href="https://github.com/MrFigoro/userTestLaravel">GitHub</a>

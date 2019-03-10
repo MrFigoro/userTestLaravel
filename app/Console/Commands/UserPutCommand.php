@@ -2,10 +2,7 @@
 
 namespace App\Console\Commands;
 
-use GuzzleHttp\Client;
-use Illuminate\Console\Command;
-
-class UserPutCommand extends Command
+class UserPutCommand extends UserCommand
 {
     /**
      * The name and signature of the console command.
@@ -19,7 +16,7 @@ class UserPutCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update user';
 
     /**
      * Create a new command instance.
@@ -39,9 +36,8 @@ class UserPutCommand extends Command
     public function handle()
     {
 	    $userId = $this->ask("Which user ID will be upated?");
-	    $client = new Client();
 	    if ($this->confirm("Are you sure to update user with ID: $userId?")) {
-		    $response = $client->put("http://usertestlaravel/users/update/$userId", [
+		    $response = $this->client->put("http://usertestlaravel/users/update/$userId", [
 			    'form_params' => [
 				    "firstName" => "UpdateMyCommand",
 				    "secondName" => "UpdateMyCommand",

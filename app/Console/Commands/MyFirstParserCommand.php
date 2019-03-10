@@ -34,25 +34,25 @@ class MyFirstParserCommand extends UserCommand
 	    $site = $this->client->request('GET', 'https://natatnik.by/events/');
 	    $contents = $site->getBody()->getContents();
 	    $crawler = new Crawler($contents);
-//	    dd($crawler);
-	    $html = $crawler->filter('html');
-	    dd($html);
-//	    $this->info($site->getStatusCode());
-//	    $this->info($site->getBody());
-//	    $contents = (string) $site->getBody();
-//	    dd($contents);
 
-
-//	    $html = $crawler->html();
-
-
-//	    $crawler = new Crawler($site->getBody());
-//	    $title = $crawler->filter('html > title');
-//	    dd($title);
-//	    $p = $html->filter('body > p')->first();
-//		dd($p);
-//	    foreach ($crawler as $domElement) {
-//		    dd($domElement->nodeName);
-//	    }
+	    $event = $crawler->filterXPath('//div[@class="tribe-events-photo-event-wrap"]')->
+	    each(function ($element){
+			$img = $element->filterXPath('//img[@class="attachment-medium size-medium wp-post-image"]')->attr('src');
+			$title = trim($element->filterXPath('//a[@class="tribe-event-url"]')->text());
+			$date = $element->filterXPath('//span[@class="tribe-event-date-start"]')->text();
+			if ($element->filterXPath('//span[@class="tribe-event-date-end"]')->count() > 0) {
+			    $date = $date." - ".$element->filterXPath('//span[@class="tribe-event-date-end"]')->text();
+		    }
+		    if ($element->filterXPath('//span[@class="tribe-event-time"]')->count() > 0) {
+			    $date = $date." - ".$element->filterXPath('//span[@class="tribe-event-time"]')->text();
+		    }
+			if ($element->filterXPath('//span[@class="tribe-events-event-cost"]')->count() == 0) {
+				$cost = "Информации о стоимости нет";
+			} else {
+				$cost = $element->filterXPath('//span[@class="tribe-events-event-cost"]')->text();
+			};
+			return [$img, $title, $date, $cost];
+	    });
+	    dd($event);
     }
 }

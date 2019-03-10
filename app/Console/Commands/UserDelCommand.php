@@ -6,7 +6,7 @@ use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
-class UserDelCommand extends Command
+class UserDelCommand extends UserCommand
 {
     /**
      * The name and signature of the console command.
@@ -43,9 +43,8 @@ class UserDelCommand extends Command
 	    $userId = $this->ask("Which user ID will be deleted?");
 	    $myUser = User::find($userId);
 	    if ($myUser instanceof User) {
-		    $client = new Client();
 		    if ($this->confirm("Are you sure to delete user with ID: $userId?")) {
-			    $resp = $client->delete("http://usertestlaravel/users/destroy/$userId");
+			    $resp = $this->client->delete("http://usertestlaravel/users/destroy/$userId");
 			    $this->info($resp->getStatusCode());
 			    $this->comment($resp->getBody());
 		    } else {
